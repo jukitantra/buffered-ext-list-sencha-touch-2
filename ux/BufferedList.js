@@ -310,7 +310,11 @@ Ext.define('Ext.ux.BufferedList', {
 		if (this.bottomItemRendered === 0 || !incrementalRender)
 		{
 			// new item list starting with newTop
-			this.replaceItemList(newTop, this.getMinimumItems());
+			// The following if condition fixes the scrolling over the top of the list.
+			if (!(newTop == 0 && previousTop == 0))
+			{
+				this.replaceItemList(newTop, this.getMinimumItems());
+			}
 		}
 		// incremental - scrolling down
 		else
